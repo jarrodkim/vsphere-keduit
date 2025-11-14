@@ -1,7 +1,7 @@
 # vsphere-keduit
 
 # vyos-template 
-interface 미리 삭제  <br />
+interface 미리 삭제  
 config.boot 에서 관련 정보 삭제   <br />
 다 완료후 template 화   <br />
 open-vmtools 설치 되어 있는지 확인   <br /> 
