@@ -1,0 +1,47 @@
+---
+# --- VCSA 접속 및 공통 변수 (Task 1-1, 1-2 필수) ---
+vcenter_hostname: '10.10.100.130'            # VCSA 서버 IP 또는 호스트 이름
+vcenter_username: 'administrator@vsphere.local'
+vcenter_password: 'VMware1!'                 # VCSA 비밀번호
+vcenter_datacenter: 'datacenter-00'          # 데이터센터 이름
+vcenter_folder: 'vyos-folder'               # VM이 배포될 폴더 이름
+
+# --- VyOS VM 프로비저닝 변수 (Task 1-1 필수) ---
+vyos_vm_template: 'vyos-template'            # VM 템플릿 이름
+vyos_vm_name: 'vyos-router-01'               # 새로 생성할 VM의 이름
+
+# --- VMware Port Group 연결 정보 (Task 1-1 필수) ---
+vyos_network_eth0: 'VM Network'       # eth0 (WAN)이 연결될 Port Group 이름
+vyos_network_eth1: 'DPortGroup-Server'           # eth1 (Trunk)이 연결될 Port Group 이름
+
+# --- 고정 MAC 주소 (Task 1-1, 1-2 필수) ---
+vyos_mac_eth0: '00:50:56:AB:CD:00'           # eth0 고정 MAC
+vyos_mac_eth1: '00:50:56:AB:CD:01'           # eth1 고정 MAC
+
+# --- VyOS OS 접속 정보 (Task 1-2 필수) ---
+vyos_os_user: 'vyos'                         # VyOS OS 사용자 이름
+vyos_ssh_pass: 'vyos'            # VyOS SSH 비밀번호
+vyos_ssh_port: 22                            # VyOS SSH 포트
+
+# --- VyOS 네트워크 설정 변수 (Task 1-2 상세 설정에 필요) ---
+
+# Outside NIC 설정 (eth0의 Static IP)
+vyos_eth0_ip: '10.10.200.10/8'              # eth0에 할당할 고정 IP 주소
+
+# VLAN ID 정의
+vlan_manage: 90                              # VLAN 90 (관리망)
+vlan_mail_server: 20                         # VLAN 20 (메일 서버망)
+vlan_nginx_server: 30                        # VLAN 30 (Nginx 서버망)
+
+# 게이트웨이 IP/CIDR 정의 (eth1 VIF에 할당)
+vyos_gw_vlan4094: '172.16.4.1/24'            # VLAN 4094 (Base) 게이트웨이 IP
+vyos_gw_vlan90: '172.16.90.1/24'             # VLAN 90 게이트웨이 IP
+vyos_gw_vlan20: '172.16.20.1/24'             # VLAN 20 게이트웨이 IP
+vyos_gw_vlan30: '172.16.30.1/24'             # VLAN 30 게이트웨이 IP
+
+# NAT Source IP 주소 (NAT rule 100, 200)
+vyos_nat_src_100: '172.16.3.0/24'
+vyos_nat_src_200: '172.16.2.0/24'
+
+# 라우팅 설정
+vyos_default_gateway: '10.0.0.1'          # 상위 라우터 (Next-Hop) 주소
